@@ -31,7 +31,7 @@ public class LuckyDrawService {
 
         if (alreadyDrawn + times > MAX_DRAW_PER_USER) {
             throw ExceptionUtil.createAbstractCustomException(
-                    ErrorEnum.COMMAND_NOT_ALLOWED, "remaining times: " + (MAX_DRAW_PER_USER - alreadyDrawn));
+                    ErrorEnum.DRAW_LIMIT_EXCEEDED, "remaining times: " + (MAX_DRAW_PER_USER - alreadyDrawn));
         }
 
         for (int t = 0; t < times; t++) {
