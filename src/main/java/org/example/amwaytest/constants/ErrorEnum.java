@@ -7,6 +7,8 @@ import org.example.amwaytest.exception.AbstractCustomException;
 import org.example.amwaytest.exception.CommandException;
 import org.example.amwaytest.exception.LuckyDrawException;
 
+import java.util.Arrays;
+
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum ErrorEnum {
@@ -16,4 +18,8 @@ public enum ErrorEnum {
     private Integer code;
     private String msg;
     private Class<? extends AbstractCustomException> exceptionClass;
+
+    public static ErrorEnum ofException(AbstractCustomException ex) {
+        return Arrays.stream(values()).filter(errorEnum -> errorEnum.getExceptionClass().isInstance(ex)).findFirst().get();
+    }
 }
